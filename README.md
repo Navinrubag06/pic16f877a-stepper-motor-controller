@@ -1,90 +1,78 @@
-# Stepper Sequence Runner — PIC16F877A
+# ⚙️ Stepper Sequence Runner — PIC16F877A
 
-A **PIC16F877A** microcontroller-based stepper motor sequence controller with **4x4 keypad** input and **SSD1306 OLED** display. Supports building, saving, and running multi-step motor sequences with 4 step types.
+A programmable stepper motor control system built using the **PIC16F877A microcontroller**, featuring **4×4 keypad input** and **SSD1306 OLED display**.  
+This system enables users to configure, store, and execute multi-step motor sequences with precision and flexibility.
 
 ---
 
-## Hardware Used
+## 📌 Overview
 
+This project focuses on designing a **real-time embedded control system** for stepper motors using interrupt-driven architecture.  
+It supports multiple motion patterns and provides an interactive user interface for sequence programming.
+
+---
+
+## 🛠️ Hardware Used
 
 | Component                | Purpose                               |
-| ------------------------ | ------------------------------------- |
-| PIC16F877A               | Main microcontroller (20 MHz crystal) |
-| 28BYJ-48 Stepper Motor   | Load                                  |
-| ULN2003A Driver Board    | Stepper motor driver                  |
-| 4x4 Matrix Keypad        | Step programming and control          |
-| SSD1306 OLED (0.96" I2C) | Real-time sequence display            |
-| 20 MHz Crystal           | Clock source                          |
-
+|------------------------|-------------------------------------|
+| PIC16F877A             | Main microcontroller (20 MHz crystal) |
+| 28BYJ-48 Stepper Motor | Load                                |
+| ULN2003A Driver Board  | Motor driver                        |
+| 4×4 Matrix Keypad      | User input interface                |
+| SSD1306 OLED Display   | Real-time display                   |
 
 ---
 
-## Pin Configuration
+## ⚙️ Features
 
-```
-RD0 – RD3   →  ULN2003A IN1–IN4 (motor coils)
-RB0 – RB3   →  Keypad columns (inputs, pull-up ON)
-RB4 – RB7   →  Keypad rows (outputs)
-RC3         →  OLED SCL (I2C clock)
-RC4         →  OLED SDA (I2C data)
-```
-
----
-
-## Step Types
-
-
-| Key | Type         | Description                              |
-| --- | ------------ | ---------------------------------------- |
-| 1   | Angle        | Rotate by degrees (1–3600°)              |
-| 2   | Rotations    | Rotate by full rotations (1–99)          |
-| 3   | Intermittent | Spin/idle cycles with configurable count |
-| 4   | Timed        | Run for a fixed duration in seconds      |
-
+- Supports multiple step types: Angle, Rotations, Intermittent, Timed  
+- Real-time control using keypad interface  
+- OLED display for user feedback  
+- Timer1 interrupt-based motor control  
+- Non-blocking execution  
+- Emergency stop functionality  
+- Sequence save and reload feature  
+- Smooth operation using half-step control  
 
 ---
 
-## Features
+## 🧠 Technical Concepts
 
-- Build sequences of up to 5 steps, each with independent direction and RPM
-- 4 step types — Angle, Rotations, Intermittent, Timed
-- Set repeat count before running — runs the full sequence N times
-- Save and reload last sequence with key `6`
-- Abort any running step with `*`
-- Half-step sequence for smooth 28BYJ-48 operation
-- Timer1 interrupt-driven motor control — non-blocking execution
-- Custom I2C bit-bang driver for SSD1306 OLED
-- Compact font with digits + uppercase letters rendered on OLED
+- Embedded C Programming  
+- Interrupt Handling  
+- Timer-based Control  
+- Software I2C Communication  
+- Real-time Embedded Systems  
 
 ---
 
-## Keypad Controls
+## 📊 Key Achievements
 
-
-| Key | Action                                              |
-| --- | --------------------------------------------------- |
-| 1–4 | Add step (Angle / Rotations / Intermittent / Timed) |
-| #   | Run sequence (prompts for repeat count)             |
-| *   | Clear sequence / abort running step                 |
-| 6   | Load last saved sequence                            |
-
+- Achieved precise control using **4096 half-steps per revolution**  
+- Implemented efficient memory usage within 8-bit constraints  
+- Developed a responsive and interactive embedded system  
+- Enabled dynamic sequence execution with repeat control  
 
 ---
 
-## Build and Flash
+## 📅 Project Details
 
-1. Open **MPLAB X IDE**
-2. Create new project, select **PIC16F877A**
-3. Add `stepper_sequence_runner.c` to project
-4. Set **XC8** compiler with optimization level 1
-5. Build and flash via **PICkit 3/4** or **TinyMultiBootLoader+**
-
-> **Note:** Firmware is size-optimized to fit within bootloader flash constraints (~7680 words).
+- Course: Microcontroller and its Applications (4 Credits)  
+- Duration: March 2026  
 
 ---
 
-## Author
+## 👨‍💻 Team Members
 
-**Harie Goutaym D A**  
-B.Tech ELC (IoT) — Amrita Vishwa Vidyapeetham  
-[GitHub](https://github.com/HarieGoutaym) | [LinkedIn](https://linkedin.com/in/harie-goutaym-d-a-67722a36a)
+- Navin Rubag V P  
+- V R Bhirugudev  
+- Harie Goutaym  
+- Shreyas Vijay  
+
+---
+
+## 🔗 Original Repository
+
+This project is based on a collaborative implementation.  
+Original source: https://github.com/HarieGoutaym/pic16f877a-motor-control
